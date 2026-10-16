@@ -1,0 +1,29 @@
+# Ignorar archivos y carpetas comunes
+*.log
+*.tmp
+.DS_Store
+node_modules/
+venv/
+__pycache__/
+.env
+.ipynb_checkpoints/
+.idea/
+3DSocal_TestCase/inputData/.ipynb_checkpoints/
+3DSocal_TestCase/inputData_TRAINING
+3DSocal_TestCase/outputData/
+CyberShake_Partition/Partition_utils/drafts/
+CyberShake_Partition/Partition_utils/.ipynb_checkpoints/
+CyberShake_Partition/Partition_utils/__pycache__/
+CyberShake_Partition/Partition_utils/outputData/
+CyberShake_VelocityModelInterpolator/Example_1DVelocityModel_Elastic/inputData/.ipynb_checkpoints/
+CyberShake_VelocityModelInterpolator/Example_3DVelocityModel/inputData/.ipynb_checkpoints/
+CyberShake_VelocityModelInterpolator/Example_1DVelocityModel_QpQs/inputData/.ipynb_checkpoints/
+CyberShake_VelocityModelInterpolator/Example_1DVelocityModel_QpQs/outputDataQpQs/
+CyberShake_VelocityModelInterpolator/Example_1DVelocityModel_Elastic/outputData/
+CyberShake_VelocityModelInterpolator/Example_1DVelocityModel_QpQs/outputData/
+CyberShake_VelocityModelInterpolator/Example_3DVelocityModel/outputData/
+
+
+# The CVM-S4.26 NetCDF of the 3D examples is downloaded from SCEC, see README.md
+3DSocal_TestCase/inputData/cvms5_1d_depth_socal.nc
+CyberShake_VelocityModelInterpolator/Example_3DVelocityModel/inputData/cvms5_1d_depth_socal.nc

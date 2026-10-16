@@ -1,0 +1,139 @@
+# =====================================================================
+# Velocity Model Interpolation Parameters for Cybershake Mesh
+# =====================================================================
+# This configuration file contains input parameters for interpolating  
+# and mapping a 1D velocity model into a 3D structured mesh, following  
+# the Cybershake format. 
+#
+# Usage:
+# - Ensure this file is properly formatted before running the script.
+# - Modify parameters as needed to match the target region and model.
+#
+# Notes:
+# - The name of this input file cannot be changed (parameters.in)
+# - The input velocity model must be provided as a Tab-delimited file 
+#   or a CSV file.
+# - Set 'is_anelastic' to True if Qp and Qs are included in the model.
+# - The output folder must exist or be writable for storing results.
+# - Cybershake domain's corners conventions:
+#
+# Rotation:
+# A model with model_rot=0 corresponds to the figure shown below. 
+# Note that the coordinate origin is at C1.
+#
+#     (North ↑)
+#         ^ 
+#         |
+#        C1 --------- C2 --> (East →)
+#         |           |  
+#         |  Model    |  
+#         |  Domain   |  
+#         |           |  
+#         |           |  
+#         |           |  
+#         |           |  
+#        C4 --------- C3 
+#
+# When model_rot=-90 (rotation of 90° counterclockwise around C1), the model appears as follows:
+#
+#     (North ↑)
+#         ^ 
+#         |
+#        C2 ------------------- C3
+#         |                     |  
+#         |       Model         |  
+#         |       Domain        |  
+#         |                     |  
+#        C1 ------------------- C4 --> (East →)
+#                                
+# Author: Andrea C. Riaño
+# Email: andrea.riano@bsc.es
+# Date: [2025-01-29]
+# =====================================================================
+
+# =====================================================================
+# 1. File Parameters
+# =====================================================================
+# Path to the inputData folder and name of the velocity model file
+input_folder=inputData/
+vm_file=1D_EBSZ.dat
+
+# Units for velocity and density
+velocity_units=km/s
+density_units=g/cm3
+
+# Folder path where the output files will be saved
+output_folder=outputData/
+
+# =====================================================================
+# 2. Partition Parameters
+# =====================================================================
+# Number of cores per node (for CPU partition)
+cores_per_node=112
+
+# Number of grid points per core (for CPU partition)
+points_per_core=450000
+
+# Number of GPUs per node (for GPU partition)
+gpus_per_node=4
+
+# Number of grid points per GPU (for GPU partition)
+points_per_gpu= 100000000
+
+# Maximum frequency to be resolved in the simulation (in Hz)
+f_max = 1
+
+# Number of grid points per wavelength (dimensionless)
+ppwl = 5
+
+# Length of the model domain along the X-axis (in kilometers)
+x_length = 240
+
+# Length of the model domain along the Y-axis (in kilometers)
+y_length = 120
+
+# Length of the model domain along the Z-axis (in kilometers)
+z_length = 40
+
+# Rotation of the simulation domain. A value of -90 means the model is  
+# rotated 90 degrees counterclockwise from the east. 
+model_rot=-90
+
+# =====================================================================
+# 3. Velocity Model Parameters
+# =====================================================================
+# Set is_anelastic to False for an elastic model (Vp, Vs, and Rho only); 
+# set to True for an anelastic model.
+is_anelastic=False
+
+# Minimum shear-wave velocity (in meters per second)
+vs_min = 2300
+
+# Grid spacing (in kilometers)
+grid_spacing = 0.46
+
+# Variable to plot ('Vp', 'Vs', 'Rho', and if_anelastic=true, 'Qp', and 'Qs') 
+variable_name=Vs
+
+# Plane to plot (XZ or YZ at index in the local Y or X dir, respectively) 
+plane_type=XZ
+index=5 
+
+# XY surface is plotted by default at the indicated index_z 
+index_z=0 
+
+# =====================================================================
+# 4. Geographic and Domain Parameters
+# =====================================================================
+# Longitude and latitude of the domain's C1 corner (in degrees)
+# This represents the geographic longitude and latitude of the model's C1 point (Cybershake notation).
+model_lon=-79.12608
+model_lat=-0.76609
+
+# Name of the region (for reference)
+region=Quito
+
+# Create domain's and grid's dynamic map 
+# Keep in mind that depending on the number of nodes, grid map can take a while to print to kml and html. 
+Domain_dynmap=True
+Grid_dynmap=False

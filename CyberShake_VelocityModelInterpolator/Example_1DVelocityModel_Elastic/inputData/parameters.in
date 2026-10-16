@@ -1,0 +1,111 @@
+# =====================================================================
+# Velocity Model Interpolation Parameters for Cybershake Mesh
+# =====================================================================
+# This configuration file contains input parameters for interpolating  
+# and mapping a 1D velocity model into a 3D structured mesh, following  
+# the Cybershake format. 
+#
+# Usage:
+# - Ensure this file is properly formatted before running the script.
+# - Modify parameters as needed to match the target region and model.
+#
+# Notes:
+# - The name of this input file cannot be changed (parameters.in)
+# - The input velocity model must be provided as a Tab-delimited file 
+#   or a CSV file.
+# - Set 'is_anelastic' to True if Qp and Qs are included in the model.
+# - The output folder must exist or be writable for storing results.
+# - Cybershake domain's corners conventions:
+#
+# Rotation:
+# A model with model_rot=0 corresponds to the figure shown below. 
+# Note that the coordinate origin is at C1.
+#
+#     (North ↑)
+#         ^ 
+#         |
+#        C1 --------- C2 --> (East →)
+#         |           |  
+#         |  Model    |  
+#         |  Domain   |  
+#         |           |  
+#         |           |  
+#         |           |  
+#         |           |  
+#        C4 --------- C3 
+#
+# When model_rot=-90 (rotation of 90° counterclockwise around C1), the model appears as follows:
+#
+#     (North ↑)
+#         ^ 
+#         |
+#        C2 ------------------- C3
+#         |                     |  
+#         |       Model         |  
+#         |       Domain        |  
+#         |                     |  
+#        C1 ------------------- C4 --> (East →)
+#               
+# Author: Andrea C. Riaño
+# Email: andrea.riano@bsc.es
+# Date: [2025-01-29]
+# ====================================================================
+
+# Path to the inputData folder and name of the velocity model file
+# The VM file contains the 1D velocity model data used for interpolation in tab-delimited or CSV formats
+input_folder=Example_1DVelocityModel_Elastic/inputData/
+vm_file=SoCal_1Dmodel.csv
+velocity_units=km/s
+density_units=g/cm3
+
+# Set is_anelastic to False for an elastic model (Vp, Vs, and Rho only); set to True for an anelastic model.
+is_anelastic=False
+
+# Longitude and latitude of the domain's C1 corner (in degrees)
+# This represents the geographic longitude and latitude of the model's C1 point (Cybershake notation).
+model_lon=-119.38
+model_lat=34.13
+
+# Length of the model domain along the X-axis (in kilometers)
+# This is the total distance (in km) the model will cover along the east-west direction if model_rot = 0 or distances between C1 to C4 = C2 to C3
+x_length=200
+
+# Length of the model domain along the Y-axis (in kilometers)
+# This is the total distance (in km) the model will cover along the north-south direction if model_rot = 0 or distances between C1 to C2 = C4 to C3
+y_length=120
+
+# Length of the model domain along the Z-axis (in kilometers)
+# This is the total depth (in km) of the model from the surface to the bottom.
+z_length=30
+
+# Rotation of the simulation domain. A value of of -30 means the model's 
+# orientation is rotated by 30 degrees clockwise from the north.
+model_rot=-30
+
+# Grid spacing (in kilometers)
+# This defines the distance between each grid point in the model.
+# A value of 2 means the grid will have a spacing of 2 km between each point.
+grid_spacing=2
+
+# Name of the region (for reference)
+# This is a label for the region where the model is located (e.g., Southern California).
+region=SouthernCalifornia
+
+# Variable to plot ('Vp', 'Vs', 'Rho', and if_anelastic=true, 'Qp', and 'Qs') 
+variable_name=Vs
+
+# Plane to plot (XZ or YZ at index in the local Y or X dir, respectively) 
+plane_type=XZ
+index=5 
+
+# XY surface is plotted by default at the indicated index_z 
+index_z=0 
+
+# Create domain's and grid's dynamic map 
+# Keep in mind that depending on the number of nodes, grid map can take a while to print to kml and html. 
+Domain_dynmap=True
+Grid_dynmap=False
+
+# Folder path where the output files will be saved
+# This is the directory where all generated model files and plots will be saved.
+output_folder=Example_1DVelocityModel_Elastic/outputData/

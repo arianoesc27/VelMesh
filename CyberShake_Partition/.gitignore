@@ -1,0 +1,14 @@
+# Ignorar archivos y carpetas comunes
+*.log
+*.tmp
+.DS_Store
+node_modules/
+venv/
+__pycache__/
+.env
+.idea/
+.ipynb_checkpoints/
+Partition_utils/drafts/
+Partition_utils/.ipynb_checkpoints/
+Partition_utils/__pycache__/
+
